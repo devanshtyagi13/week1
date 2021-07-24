@@ -3,7 +3,8 @@ using namespace std;
 
 int main()
 {
-    int key,c=0,n,i;
+    int n,key,c=0;
+    int first,last,middle;
     cout<<"Enter array size: ";
     cin>>n;
     int arr[n];
@@ -14,20 +15,26 @@ int main()
     }
     cout<<"Enter element to be searched: ";
     cin>>key;
-    for(int i=0;i<n;i++)
+    first=arr[0];
+    last=arr[n-1];
+    middle=(first+last)/2;
+    while(first<=last)
     {
-        if(arr[i]==key)
+        if(arr[middle]<key)
+        first=middle+1;
+        else if(arr[middle]==key)
         {
-            c++;
+            c=middle;
             cout<<"\n Element present"<<" "<<c;
             break;
         }
-        else{
-            c++;
-        }
+        else
+        last=middle-1;
+        middle=(first+last)/2;
     }
-    if(c==n)
+    if(first>last)
     {
-        cout<<"\n Element not present"<<" "<<c;
+        c=n;
+    cout<<"\n Element not present"<<" "<<c;
     }
 }
